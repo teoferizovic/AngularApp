@@ -1,0 +1,54 @@
+
+<!--<h1>category-list</h1>
+<ul>
+  <li *ngFor="let category of data">
+    <a routerLink="">{{ category.id }}</a>
+    <p>{{ category.name }}</p>
+    <p>{{ category.description }}</p>
+  </li>
+</ul>-->
+<div class="row">
+  <div class="col-md-6">
+    <form class="emp-form" #categoryForm="ngForm" (ngSubmit)="create(categoryForm)">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input class="form-control"  name="name" ngModel required #name="ngModel"
+            placeholder="Name">
+
+        </div>
+        <div class="form-group col-md-6">
+          <input class="form-control" name="description" ngModel required #description="ngModel"   placeholder="Description"
+            >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <button  type="submit" class="btn btn-lg btn-block btn-info">
+            <i class="fa fa-floppy-o"></i> Submit</button>
+        </div>
+        <div class="form-group col-md-4">
+          <button type="button" (click)="fireEvent()" class="btn btn-lg btn-block btn-secondary" >
+            <i class="fa fa-repeat"></i> Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <table class="table table-sm table-hover">
+      <tr *ngFor="let category of data" [class.selected-item]="isSelcted(category)">
+        <td>{{category.id}} - {{category.name}}</td>
+        <td>{{category.description}}</td>
+        <td>
+          <a class="btn" routerLink="/categories/{{category.id}}">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a class="btn text-danger" (click)="delete(category.id)">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+    </table>
+</div>
+<h1>{{lastName}}</h1>
+</div>
