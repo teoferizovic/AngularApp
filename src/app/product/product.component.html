@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-12">
+      <table class="table table-sm table-hover">
+        <tr *ngFor="let product of products">
+          <td>{{product?.id}} - {{product?.name}}</td>
+          <!--<td>{{category.description}}</td>-->
+          <td>
+            <a class="btn">
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a class="btn text-danger" (click)="''">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+</div>

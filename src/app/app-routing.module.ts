@@ -7,6 +7,7 @@ import { CategoryDetailsComponent } from './categories/category-details/category
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CategoryDetailsOverviewComponent } from './categories/category-details/category-details-overview/category-details-overview.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ProductComponent } from './product/product.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,11 @@ const routes: Routes = [
       path: 'overview',
       component: CategoryDetailsOverviewComponent,
     }]
+  },
+  {
+    path: 'products',
+    component: ProductComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: '**',
