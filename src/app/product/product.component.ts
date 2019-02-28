@@ -13,19 +13,21 @@ export class ProductComponent implements OnInit {
 
   private products : Product[];
 
+  public pages : Array<number>;
+
   ngOnInit() {
-    this.read();
+    this.read(1);
   }
 
-  public read(){
-    this.productService.getProducts()
+  public read(pageNum : number){
+    this.productService.getProducts(pageNum)
       .subscribe(res => {
-        this.products = res;
-        console.log(this.products);
+        this.products = res["data"];
+        this.pages = new Array(res["last_page"]);
+        console.log(res["total"]);
       }, err => {
         console.log(err);
       });
   }
-
 
 }

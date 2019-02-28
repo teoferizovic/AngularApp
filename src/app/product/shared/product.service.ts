@@ -22,10 +22,10 @@ export class ProductService {
 
   }
 
-  getProducts (): Observable<Product[]> {
-     return this.http.get<Product[]>('http://127.0.0.1:8000/products/index/')
+  getProducts (pageNum : number): Observable<Product[]> {
+     return this.http.get<Product[]>('http://127.0.0.1:8000/products/index/?page='+pageNum)
        .pipe(
-         tap(heroes => console.log('fetched products')),
+         tap(products => console.log('fetched products')),
          catchError(this.handleError('getProducts', []))
        );
   }

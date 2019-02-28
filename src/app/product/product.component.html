@@ -3,16 +3,18 @@
       <table class="table table-sm table-hover">
         <tr *ngFor="let product of products">
           <td>{{product?.id}} - {{product?.name}}</td>
-          <!--<td>{{category.description}}</td>-->
+            <td>{{product.category.name}}</td>
           <td>
-            <a class="btn">
-              <i class="fa fa-pencil-square-o"></i>
-            </a>
-            <a class="btn text-danger" (click)="''">
-              <i class="fa fa-trash-o"></i>
+            <a class="btn btn-info" (click)="''">
+              <i class="fa fa-shopping-basket"></i>
             </a>
           </td>
         </tr>
       </table>
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item" *ngFor="let page of pages;let i=index"><a class="page-link" (click)="read(i+1)">{{i+1}}</a></li>
+        </ul>
+    </nav>
 </div>
