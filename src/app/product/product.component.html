@@ -1,20 +1,43 @@
 <div class="row">
-    <div class="col-md-12">
-      <table class="table table-sm table-hover">
-        <tr *ngFor="let product of products">
-          <td>{{product?.id}} - {{product?.name}}</td>
-            <td>{{product.category.name}}</td>
-          <td>
-            <a class="btn btn-info" (click)="''">
-              <i class="fa fa-shopping-basket"></i>
-            </a>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item" *ngFor="let page of pages;let i=index"><a class="page-link" (click)="read(i+1)">{{i+1}}</a></li>
-        </ul>
-    </nav>
+  <div *ngIf="visible;then searchProducts else listProducts"></div>
+  <ng-template #listProducts>
+      <div class="col-md-12">
+        <table class="table table-sm table-hover">
+          <tr *ngFor="let product of products">
+            <td>{{product?.id}} - {{product?.name}}</td>
+              <td>{{product.category.name}}</td>
+            <td>
+              <a class="btn btn-info" (click)="''">
+                <i class="fa fa-shopping-basket"></i>
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" *ngFor="let page of pages;let i=index"><a class="page-link" (click)="read(i+1)">{{i+1}}</a></li>
+          </ul>
+      </nav>
+    </ng-template>
+    <ng-template #searchProducts>
+      <h1>search</h1>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="searchName" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="searchByName(searchName)" type="button">Button</button>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-sm table-hover">
+          <tr *ngFor="let product of productsS">
+            <td>{{product?.id}} - {{product?.name}}</td>
+              <td>{{product.category.name}}</td>
+          </tr>
+        </table>
+      </div>
+    </ng-template>
+</div>
+<div class="row">
+    <button type="button" class="btn btn-primary" (click)="showSearch()">Search</button>
 </div>

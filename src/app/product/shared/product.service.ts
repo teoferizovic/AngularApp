@@ -29,4 +29,12 @@ export class ProductService {
          catchError(this.handleError('getProducts', []))
        );
   }
+
+  getProductsByName (name : string): Observable<Product[]> {
+     return this.http.get<Product[]>('http://127.0.0.1:8000/products/index/?name='+name)
+       .pipe(
+         tap(products => console.log('fetched products')),
+         catchError(this.handleError('getProducts', []))
+       );
+  }
 }
