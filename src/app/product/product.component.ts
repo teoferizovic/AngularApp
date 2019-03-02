@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
   public visible : boolean = false;
   public pages : Array<number>;
   private searchName : string;
+  private btnChange : string = "Search";
 
   ngOnInit() {
     this.read(1);
@@ -42,9 +43,12 @@ export class ProductComponent implements OnInit {
   }
 
   public showSearch() : boolean {
+    this.btnChange = (this.btnChange == "Search") ? "List" : "Search";
     this.searchName='';
     this.productsS = [];
     return this.visible =! this.visible;
   }
 
+  //https://stackblitz.com/edit/angular-tabs-example?file=app%2Fapp.component.ts
+  //https://ng-bootstrap.github.io/#/getting-started
 }
