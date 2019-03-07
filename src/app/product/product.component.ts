@@ -17,13 +17,15 @@ export class ProductComponent implements OnInit {
   public pages : Array<number>;
   private searchName : string;
   private btnChange : string = "Search";
+  private queryParam : string;
 
   ngOnInit() {
     this.read(1);
   }
 
   public read(pageNum : number){
-    this.productService.getProducts(pageNum)
+    this.queryParam  = "?page="+pageNum;
+    this.productService.getProducts(this.queryParam)
       .subscribe(res => {
         this.products = res["data"];
         this.pages = new Array(res["last_page"]);
@@ -34,7 +36,8 @@ export class ProductComponent implements OnInit {
   }
 
   public searchByName(searchName : string){
-    this.productService.getProductsByName(searchName)
+    this.queryParam  = "?name="+searchName;
+    this.productService.getProducts(this.queryParam)
       .subscribe(res => {
         this.productsS = res["data"];
       }, err => {
