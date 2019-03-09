@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
+import { RoleService } from '../../shared/role.service';
+import { Role } from '../../shared/role.model';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 
@@ -10,10 +12,14 @@ import { NgForm } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private userService: UserService,private toastr: ToastrService) { }
+  private roles : Role[];
+
+  constructor(private userService: UserService,private roleService: RoleService,private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.readRoles()
   }
+
 
   public onSubmit(form: NgForm) {
 
@@ -25,6 +31,17 @@ export class SignUpComponent implements OnInit {
       //console.log(err)
       this.toastr.warning(err, 'User Register');
     })
+
+  }
+
+  public readRoles(){
+
+    this.roleService.getRoles()
+      .subscribe(res => {
+        this.roles = res["data"];
+      }, err => {
+        console.log(err);
+      });
 
   }
 
