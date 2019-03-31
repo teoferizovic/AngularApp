@@ -19,6 +19,8 @@
       <option *ngFor="let role of roles" [ngValue]="role.id">{{role.name}}</option>
   </select>
   <br>
+  <input accept="image/*" type="file" (change)="onFileChanged($event)">
+  <br><br>
   <div class="form-row">
     <div class="form-group col-md-12">
       <button  type="submit" class="btn btn-lg btn-block btn-info">
@@ -26,3 +28,4 @@
     </div>
   </div>
 </form>
+<!--https://www.academind.com/learn/angular/snippets/angular-image-upload-made-easy/-->

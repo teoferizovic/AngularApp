@@ -33,12 +33,19 @@ export class UserService implements ErrorHandling {
 
   }
 
-  public addUser(user : User): Observable<User> {
+  public addUser(user : User,selectedFile? : File): Observable<User> {
 
     const url = 'http://127.0.0.1:8000/users/register';
-    var body = JSON.parse(JSON.stringify(user));
+    const formdata = new FormData();
 
-    return this.http.post<User>(url, body, {headers:this.reqHeader}).pipe(
+    formdata.append('name', user.name);
+    formdata.append('email', user.email);
+    formdata.append('password', user.password);
+    formdata.append('role_id',user.role_id);
+    formdata.append('files[]', selectedFile, selectedFile.name);
+
+    //var body = JSON.parse(JSON.stringify(user));
+    return this.http.post<User>(url,formdata, {headers:this.reqHeader}).pipe(
           tap((user: User) => console.log(`added user ${user}`)),
         catchError(this.handleError<User>('addUser'))
     );

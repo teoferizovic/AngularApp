@@ -4,4 +4,5 @@ export class User {
     email: string;
     password: string;
     api_token? : string;
+    role_id? : string;
 }

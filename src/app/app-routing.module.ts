@@ -48,6 +48,10 @@ const routes: Routes = [
     loadChildren:'./product/product.module#ProductModule'
   },
   {
+    path: 'orders',
+    loadChildren:'./order/order.module#OrderModule'
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   },

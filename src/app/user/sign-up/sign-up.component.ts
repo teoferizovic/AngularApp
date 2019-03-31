@@ -13,6 +13,7 @@ import { NgForm } from '@angular/forms';
 export class SignUpComponent implements OnInit {
 
   private roles : Role[];
+  public selectedFile: File;
 
   constructor(private userService: UserService,private roleService: RoleService,private toastr: ToastrService) { }
 
@@ -20,10 +21,13 @@ export class SignUpComponent implements OnInit {
     this.readRoles()
   }
 
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
+  }
 
   public onSubmit(form: NgForm) {
 
-    this.userService.addUser(form.value)
+    this.userService.addUser(form.value,this.selectedFile)
     .subscribe(data => {
       form.reset();
       this.toastr.success('New User Added Succcessfully', 'User Register');

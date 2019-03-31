@@ -21,6 +21,7 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+//import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     SignInComponent,
     SignUpComponent,
     HomeComponent,
+    //OrderComponent,
   ],
   imports: [
     FormsModule,
